@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MARS</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/journal/bootstrap.min.css" rel="stylesheet" integrity="sha384-vjBZc/DqIqR687k5rf6bUQ6IVSOxQUi9TcwtvULstA7+YGi//g3oT2qkh8W1Drx9" crossorigin="anonymous">
+   
+</head>
+
+<body>
+  <div class="container">
+
+    <!--Adding jumotron to display Scrape button-->
+    
+    <div class="jumbotron text-center" style="background-image: url(static/mars.jpg)">
+      <h1 class="text-white">Mission to MARS</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+  
+  <!-- Adding scapred data-->
+  <!--Adding MARS News cointainer-->
+  <div class="container-fluid  ">    
+    <div class="row" class="mx-auto"> 
+         
+      <!--First Column in this Row-->
+      <div class="col-md-8 mb-3">
+        <h3>Latest Mars News</h3>
+        <hr class="my-4"> 
+        <h4>{{mars_info.news_title}}</h4>
+        <p>{{mars_info.news_p}}</p>
+      </div>
+
+      <div class="col-md-4">
+      <div class="box div-box">  
+    
+      <!--Current Weather Block-->
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+          <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1"><i class='fas fa-cloud-moon' style='color:white'></i> Current Weather in Mars</h4>
+          </div>    
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">      
+          <p class="mb-3">{{mars_info.mars_weather}}</p>
+        </div>    
+      </a>
+      <!--End of current weather div-->
+      </div>
+
+      </div>
+      </div>
+
+    <!--End of row-->
+    </div>
+  
+  <!--End of container-->
+  </div>
+        
+  <div class="container-fluid ">
+    <div class="row" class="mx-auto">
+
+      <!--Featured Mars Image Section-->
+      <div class="col-md-7 mb-3">        
+        <div class="box div-box">       
+        <h3 class="font-weight-bold">Featured Mars Image</h3>
+        <hr class="my-4">   
+        <img src="{{mars_info.featured_image_url}}" alt="Featured Image" class="img-thumbnail">        
+        </div>
+      </div>
+
+    <!--Create MARS facts table-->
+    <div class="col-md-5">
+      <div class="box div-box">   
+      <br><h4 class="font-weight-bold text-center" >Mars Facts</h4>    
+      </div>
+
+    <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    {{ mars_info.mars_facts_html|safe}}
+    </div> 
+
+    <!--End of Mars fact Table div--> 
+    </div>   
+
+    <!--End of row-->
+    </div>
+  
+  <!--End of container-->
+  </div>
+
+<!--Rendering Mars Hemisphere Images-->
+
+  <div class="box div-box">
+    <hr class="my-1">
+    <br><h3 class="font-weight-bold text-center">Mars Hemispheres</h3>
+    <hr class="my-4"> 
+  </div>
+
+<div class="col-md-12">
+  <div class="row">
+    {% for item in mars_info.mars_hemispheres %}
+      <div class="col-md-6">
+        <div class="card mb-3">
+        <img class="card-img-top" src="{{ item.img_url }}" alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title text-center">{{ item.title }}</h5>
+        </div>
+        </div> 
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!--End of the top most container-->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</body>
+
+</html>
+
